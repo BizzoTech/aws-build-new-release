@@ -1,0 +1,12 @@
+{
+  "name": "aws-build-new-release",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "git@github.com:BizzoTech/aws-build-new-release.git",
+  "author": "Emad Shaaban <emad.shaaban92@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "fs-extra": "^4.0.2"
+  }
+}
