@@ -48,23 +48,22 @@ const getReleaseInfo = async() => {
 const start = async() => {
   const BUILD_TYPE = process.argv.length > 2 ? process.argv[2] : "PATCH";
   const releaseInfo = await getReleaseInfo();
-  const latestRelease = await getLatestRelease(releaseInfo.ecrRepoName) || "v0.0.0";
-  const newRelease = getNewRelease(latestRelease, BUILD_TYPE);
-  
+  //const latestRelease = await getLatestRelease(releaseInfo.ecrRepoName) || "v0.0.0";
+  //const newRelease = getNewRelease(latestRelease, BUILD_TYPE);
+
   try {
-    await executeCommand(`git tag ${newRelease}`);
+    //await executeCommand(`git tag ${newRelease}`);
   } catch (e) {
 
   }
-  await executeCommand(`git push --tags`);
+  //await executeCommand(`git push --tags`);
 
   const buildObj = {
     projectName: releaseInfo.codebuildProjectName,
-    sourceVersion: newRelease,
     environmentVariablesOverride: [
       {
         name: "IMAGE_TAG",
-        value: newRelease
+        value: releaseInfo.tag
       }
     ]
   }
