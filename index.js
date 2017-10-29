@@ -40,14 +40,14 @@ const getNewRelease = (latestRelease, buildType) => {
   }
 }
 
-const getReleaseInfo = async() => {
+const getReleaseInfo = async(buildType) => {
   const packageInfo = JSON.parse(await fs.readFile('./package.json'));
-  return packageInfo.releaseInfo;
+  return packageInfo.releaseInfo[buildType] || packageInfo.releaseInfo;
 }
 
 const start = async() => {
-  const BUILD_TYPE = process.argv.length > 2 ? process.argv[2] : "PATCH";
-  const releaseInfo = await getReleaseInfo();
+  const BUILD_TYPE = process.argv.length > 2 ? process.argv[2] : "debug";
+  const releaseInfo = await getReleaseInfo(BUILD_TYPE);
   //const latestRelease = await getLatestRelease(releaseInfo.ecrRepoName) || "v0.0.0";
   //const newRelease = getNewRelease(latestRelease, BUILD_TYPE);
 
